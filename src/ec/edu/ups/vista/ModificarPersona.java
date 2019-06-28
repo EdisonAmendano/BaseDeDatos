@@ -1,6 +1,5 @@
 package ec.edu.ups.vista;
 
-
 import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.controladorExepcion.ErrorCedula;
 import ec.edu.ups.controladorExepcion.ErrorApellidoLetras;
@@ -75,6 +74,12 @@ public class ModificarPersona extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Posicion");
 
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,13 +87,37 @@ public class ModificarPersona extends javax.swing.JInternalFrame {
             }
         });
 
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
         jLCedula.setText("ID");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jLApellido.setText("Apellido");
 
         jLNombre.setText("Nombre");
 
+        txtFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaKeyTyped(evt);
+            }
+        });
+
         jLEdad.setText("Edad");
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
 
         jLFecha.setText("Fecha");
 
@@ -194,8 +223,9 @@ public class ModificarPersona extends javax.swing.JInternalFrame {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
             posicion = Integer.parseInt(txtPosicion.getText()) * 152;
             archivo.seek(posicion);
-            if (!archivo.readUTF().equals("                                                  ")) {
-                String palabrasN[] = archivo.readUTF().split(" ");
+            String setNombre = archivo.readUTF();
+            if (!setNombre.equals("                                                  ")) {
+                String palabrasN[] = setNombre.split(" ");
                 nombre = palabrasN[0] + " " + palabrasN[1];
                 txtNombre.setText(nombre);
 
@@ -260,7 +290,15 @@ public class ModificarPersona extends javax.swing.JInternalFrame {
                 archivo.writeDouble(Double.parseDouble(txtSalario.getText()));
             }
             archivo.close();
-
+            JOptionPane.showMessageDialog(this, "Persona modificada", "Modificar Persona", JOptionPane.OK_OPTION);
+            txtCedula.setText("");
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtCelular.setText("");
+            txtEdad.setText("");
+            txtFecha.setText("");
+            txtSalario.setText("");
+            txtPosicion.setText("");
         } catch (FileNotFoundException e) {
             System.out.println("Archivo no encontrado");
         } catch (IOException e) {
@@ -278,20 +316,42 @@ public class ModificarPersona extends javax.swing.JInternalFrame {
         } catch (ErrrorNombreLetras e) {
             JOptionPane.showMessageDialog(this, "nombre", "Error nombre", JOptionPane.OK_OPTION);
         }
-        JOptionPane.showMessageDialog(this, "Persona modificada","Modificar Persona",JOptionPane.OK_OPTION);
-        txtCedula.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtCelular.setText("");
-        txtEdad.setText("");
-        txtFecha.setText("");
-        txtSalario.setText("");
-        txtPosicion.setText("");
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        if (txtCedula.getText().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        if (txtApellido.getText().length() == 50) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (txtNombre.getText().length() == 50) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaKeyTyped
+        if (txtFecha.getText().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFechaKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        if (txtCelular.getText().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

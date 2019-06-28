@@ -184,8 +184,9 @@ public class BuscarPersona extends javax.swing.JInternalFrame {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "r");
             int posicion = Integer.parseInt(txtPosicion.getText()) * 152;
             archivo.seek(posicion);
-            if (!archivo.readUTF().equals("                                                  ")) {
-                txtNombre.setText(archivo.readUTF());
+            String nombre = archivo.readUTF();
+            if (!nombre.equals("                                                  ")) {
+                txtNombre.setText(nombre);
                 archivo.seek(posicion + 52);
                 txtApellido.setText(archivo.readUTF());
                 archivo.seek(posicion + 104);
@@ -206,7 +207,7 @@ public class BuscarPersona extends javax.swing.JInternalFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BuscarPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException e) {
-            System.out.println("Error de escritura");
+            JOptionPane.showMessageDialog(this, "La persona no existe", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

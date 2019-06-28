@@ -7,6 +7,7 @@ import ec.edu.ups.controladorExepcion.ErrrorNombreLetras;
 import ec.edu.ups.controladorExepcion.ErrorApellidoLetras;
 import ec.edu.ups.controladorExepcion.ErrorNombreDosNomres;
 import ec.edu.ups.controladorExepcion.ErrorEdad;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,9 +25,25 @@ public class Persona {
     private String nombre;
     private String apellido;
     private int edad;
+    private Date fecha;
+    private String celular;
+    private Double salario;
 
     public Persona() {
+        
     }
+
+    public Persona(String cedula, String nombre, String apellido, int edad, Date fecha, String celular, Double salario) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.fecha = fecha;
+        this.celular = celular;
+        this.salario = salario;
+    }
+    
+    
 
     public String getCedula() {
         return cedula;
@@ -132,5 +149,36 @@ public class Persona {
         }
 
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", fecha=" + fecha + ", celular=" + celular + ", salario=" + salario + '}';
+    }
+    
+    
 
 }

@@ -1,6 +1,5 @@
 package ec.edu.ups.vista;
 
-
 import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.controladorExepcion.ErrorNombreDosNomres;
 import ec.edu.ups.controladorExepcion.ErrorEdad;
@@ -219,6 +218,7 @@ public class CraarPersona extends javax.swing.JInternalFrame {
                 for (int i = txtNombre.getText().length() + 1; i <= 50; i++) {
                     nombre = nombre.substring(0) + " ";
                 }
+                archivo.seek(archivo.length());
                 archivo.writeUTF(nombre);
                 for (int i = txtApellido.getText().length() + 1; i <= 50; i++) {
                     apellido = apellido.substring(0) + " ";
@@ -231,6 +231,14 @@ public class CraarPersona extends javax.swing.JInternalFrame {
                 archivo.writeDouble(Double.parseDouble(txtSalario.getText()));
             }
             archivo.close();
+            JOptionPane.showMessageDialog(this, "Persona Creada", "Crar Persona", JOptionPane.OK_OPTION);
+            txtCedula.setText("");
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtCelular.setText("");
+            txtEdad.setText("");
+            txtFecha.setText("");
+            txtSalario.setText("");
 
         } catch (FileNotFoundException e) {
             System.out.println("Archivo no encontrado");
@@ -249,14 +257,7 @@ public class CraarPersona extends javax.swing.JInternalFrame {
         } catch (ErrrorNombreLetras e) {
             JOptionPane.showMessageDialog(this, "nombre", "Error nombre", JOptionPane.OK_OPTION);
         }
-        JOptionPane.showMessageDialog(this, "Persona Creada","Crar Persona",JOptionPane.OK_OPTION);
-        txtCedula.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtCelular.setText("");
-        txtEdad.setText("");
-        txtFecha.setText("");
-        txtSalario.setText("");
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 

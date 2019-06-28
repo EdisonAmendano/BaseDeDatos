@@ -43,8 +43,9 @@ public class Listar extends javax.swing.JInternalFrame {
                 RandomAccessFile archivo = new RandomAccessFile(ruta, "r");
                 posicion = c * 152;
                 archivo.seek(posicion);
-                if (!archivo.readUTF().equals("                                                  ")) {
-                    String nombre = archivo.readUTF();
+                String nombreb = archivo.readUTF();
+                if (!nombreb.equals("                                                  ")) {
+                    String nombre = nombreb;
                     archivo.seek(posicion + 52);
                     String apellido = archivo.readUTF();
                     archivo.seek(posicion + 104);
